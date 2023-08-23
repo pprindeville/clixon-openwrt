@@ -27,6 +27,13 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 # Call original “make install” with prefix set to PKG_INSTALL_DIR
 PKG_INSTALL:=1
 
+# Make the working directories owned by clicon
+PKG_FILE_MODES:=\
+	/usr/var/hello:clicon:clicon:750 \
+	/usr/var/wifi:clicon:clicon:750 \
+	/usr/var/openconfig:clicon:clicon:750
+
+
 # This is build/devel dependencies
 PKG_BUILD_DEPENDS:=cligen clixon
 
