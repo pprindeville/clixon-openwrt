@@ -80,7 +80,6 @@ define Build/Compile
 endef
 
 define Package/musenki/install
-#	sed -i -e 's/<port>80<\/port>/<port>8080<\/port>/g' $(PKG_INSTALL_DIR)/var/musenki/startup_db
 	$(INSTALL_DIR) $(1)/etc $(1)/etc/clixon $(1)/etc/clixon/musenki
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/clixon/musenki.xml $(1)/etc/clixon
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/clixon/musenki/*.xml $(1)/etc/clixon/musenki
@@ -92,7 +91,6 @@ define Package/musenki/install
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/clixon/*.yang $(1)/usr/share/clixon/
 	# Cant install dir into $(1)/var/musenki
 	$(INSTALL_DIR) $(1)/usr/var/musenki
-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/var/musenki/startup_db $(1)/usr/var/musenki/
 	$(INSTALL_DIR) $(1)/usr/share/openconfig
 	unzip -q $(DL_DIR)/$(FILE) -d $(1)/usr/share/openconfig
 	cp -r $(1)/usr/share/openconfig/openconfig-public-* $(1)/usr/share/openconfig/public
