@@ -27,12 +27,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 # Call original “make install” with prefix set to PKG_INSTALL_DIR
 PKG_INSTALL:=1
 
-# Make the working directories owned by clicon
-PKG_FILE_MODES:=\
-	/usr/var/hello:clicon:clicon:750 \
-	/usr/var/wifi:clicon:clicon:750 \
-	/usr/var/openconfig:clicon:clicon:750
-
 
 # This is build/devel dependencies
 PKG_BUILD_DEPENDS:=cligen clixon
@@ -49,6 +43,8 @@ endef
 define Package/clixon-hello
 	$(call Package/clixon-examples/Default)
 	TITLE:=Clixon hello world example
+	FILE_MODES:=\
+		/usr/var/hello:clicon:clicon:750
 endef
 
 define Package/clixon-hello/description
@@ -58,6 +54,8 @@ endef
 define Package/clixon-wifi
 	$(call Package/clixon-examples/Default)
 	TITLE:=Clixon wifi example
+	FILE_MODES:=\
+		/usr/var/wifi:clicon:clicon:750
 endef
 
 define Package/clixon-wifi/description
@@ -67,6 +65,8 @@ endef
 define Package/clixon-openconfig
 	$(call Package/clixon-examples/Default)
 	TITLE:=Clixon openconfig example
+	FILE_MODES:=\
+		/usr/var/openconfig:clicon:clicon:750
 endef
 
 define Package/clixon-openconfig/description
@@ -88,7 +88,7 @@ endef
 define Package/clixon-hello/install
 	$(INSTALL_DIR) $(1)/etc/clixon/ $(1)/etc/clixon/hello
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/clixon/hello.xml $(1)/etc/clixon
-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/clixon/hello/{autocli,restconf}.xml $(1)/etc/clixon/hello
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/clixon/hello/autocli.xml $(1)/etc/clixon/hello
 	$(INSTALL_DIR) $(1)/usr/lib/hello/clispec
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/hello/clispec/*.cli $(1)/usr/lib/hello/clispec/
 	$(INSTALL_DIR) $(1)/usr/share/clixon/hello
